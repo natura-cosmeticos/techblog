@@ -1,0 +1,11 @@
+.post-comments {
+  margin-top: 3.125rem;
+
+  .comments-content {
+    padding: 0 7.5rem;
+
+    @include media-breakpoint-down(md) {
+      padding: 0 1rem;
+    }
+  }
+}

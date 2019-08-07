@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+{% include head.html %}
+
+<body>
+  {% include header.html %}
+
+  {% assign categories = page.categories %}
+  {% assign author = site.data.authors[page.author] %}
+
+  <div class="post-single">
+    <div class="post-image">
+      <img src="{{ site.baseurl }}/assets/images/{{ page.featured_image }}" alt="">
+    </div>
+
+    <div class="container post-container">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10">
+          <div class="post-content">
+            <div class="post-header">
+              <div class="category">
+                {% for category in categories %}
+                <a href="{{site.baseurl}}/category/{{category | slugify }}">{{category}}</a>
+                {% unless forloop.last %}, {% endunless %}
+                {% endfor %}
+              </div>
+              <h1 class="post-title">{{ page.title }}</h1>
+              <div class="author">
+                <img src="{{site.baseurl}}/assets/images/authors/{{ author.image }}" alt="">
+                <span class="author-name">
+                  <!-- Personal Info. -->
+                  <span>Por</span> <span class="name">{{ author.name }} <span class="separator">|</span></span> <span class="date">{{ page.date | date: "%d/%m/%Y" }}</span>
+                </span>
+              </div>
+              <div class="date-mobile">
+                <span class="date">{{ page.date | date: "%d/%m/%Y" }}</span>
+              </div>
+            </div>
+
+            <div class="post-entry">
+              {{ content }}
+            </div>
+
+            <div class="separator"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% assign max_related = 4 %}
+  {% assign max_related_counter = 0 %}
+  {% assign related_posts = site.categories[page.category] %}
+
+  {% if related_posts.size >= 2 %}
+  <div class="related-posts">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10">
+          <div class="content">
+            <h2 class="related-title">Leia também:</h2>
+
+            {% for post in related_posts %}
+
+            {% if max_related_counter >= max_related %}{% break %}{% endif %}
+
+            {% if post.url != page.url %}
+              <a class="related-link" href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+              {% assign max_related_counter = max_related_counter | plus:1 %}
+            {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="post-comments">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10">
+          <div class="comments-content">
+            <div id="disqus_thread"></div>
+            <script>
+              /**
+              *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+              *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+              /*
+              var disqus_config = function () {
+              this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+              this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+              };
+              */
+              (function () { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://natura-dev-blog-dev.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+              })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+                Disqus.</a></noscript>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% include footer.html %}
+</body>
+
+</html>

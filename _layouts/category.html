@@ -1,0 +1,31 @@
+---
+layout: default
+---
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="search-result">
+        <h1 class="search-title">Arquivo da Categoria</h1>
+        <h2 class="search-terms">{{ page.category }}</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="row posts-list" data-page="1" data-category="{{ page.category | slugify }}">
+    {% for post in site.categories[page.category] limit:9 %}
+    {% assign posts_count = site.categories[page.category].size %}
+    {% include post-small.html post=post %}
+    {% endfor %}
+  </div>
+
+  {% if posts_count > 9 %}
+  <div class="row search-load-more">
+    <div class="col text-center">
+      <a href="#" class="btn btn-primary btn-lg load-more">
+        <span class="text">Posts antigos</span>
+        <img class="site-loading" src="{{site.baseurl}}/assets/images/loading.svg" alt="">
+      </a>
+    </div>
+  </div>
+  {% endif %}
+</div>

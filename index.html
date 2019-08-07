@@ -1,0 +1,30 @@
+---
+layout: default
+---
+<div class="container">
+  <div class="row">
+    <div class="col">
+      {% assign post = site.posts[0] %}
+      {% assign posts_count = site.posts.size %}
+
+      {% include post-big.html post=post %}
+    </div>
+  </div>
+
+  <div class="row posts-list" data-page="1">
+    {% for post in site.posts limit:9 offset:1 %}
+    {% include post-small.html post=post %}
+    {% endfor %}
+  </div>
+
+  {% if posts_count > 9 %}
+  <div class="row search-load-more">
+    <div class="col text-center">
+      <a href="#" class="btn btn-primary btn-lg load-more">
+        <span class="text">Posts antigos</span>
+        <img class="site-loading" src="{{site.baseurl}}/assets/images/loading.svg" alt="">
+      </a>
+    </div>
+  </div>
+  {% endif %}
+</div>
