@@ -3,7 +3,7 @@ layout: post
 title: Refactoring de Código - Por onde começar?
 author: bih_letti
 category: Best Practices
-featured_image: sample/post-thumb-1.jpg
+featured_image: sample/refactoring-code-image.jpg
 excerpt: Refactoring de código é o processo de esclarecer e simplificar o design do código existente, sem alterar seu comportamento.
 ---
 
