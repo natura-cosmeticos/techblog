@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Refactoring de Código - Por onde começar?
-author: Bianca Letti
-category: Código
+author: bih_letti
+category: bestpractices
 featured_image: sample/post-thumb-1.jpg
 excerpt: Refactoring de código é o processo de esclarecer e simplificar o design do código existente, sem alterar seu comportamento.
 ---
@@ -25,7 +25,7 @@ Mas note que é apenas "seguro" refatorar extensivamente o código se tivermos e
 
 Sem poder executar esses testes após cada pequena etapa de uma refatoração, corremos o risco de introduzir erros. Se você está fazendo um verdadeiro desenvolvimento orientado a testes (Test-Driven Development - TDD), no qual o design evolui continuamente, então você não tem escolha sobre a refatoração regular, já que é assim que você evolui o design.
 
-## Code Hygiene:
+#### Code Hygiene:
 
 Uma metáfora popular para a refatoração é limpar a cozinha enquanto você cozinha.
 
